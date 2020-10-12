@@ -7,13 +7,13 @@ const TaskListContextProvider = props => {
   const initialState = JSON.parse(localStorage.getItem("tasks")) || [];
 
   const [tasks, setTasks] = useState(initialState);
-
+  const [title, setTitle] = useState('');
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
     console.log("tasks" + JSON.stringify(tasks))
   }, [tasks]);
 
-
+  
 
 
 const filteredTasks = title => {tasks.filter((task) => { return task.title.indexOf(title) !== -1;
@@ -37,11 +37,8 @@ const filteredTasks = title => {tasks.filter((task) => { return task.title.index
 
   // Filter
   const handleFilter = e => {
-    tasks.filter((task) => { return task.title.indexOf(e) !== -1;
-    });
-    console.log("whatintheinput " + e)
-    // console.log("input" + (e.target.value))
-
+    setTitle(e);
+    
   }
 
 
@@ -78,6 +75,7 @@ const filteredTasks = title => {tasks.filter((task) => { return task.title.index
         findItem,
         editTask,
         editItem,
+        title,
         
 
       }}

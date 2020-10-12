@@ -3,14 +3,20 @@ import { TaskListContext } from "../contexts/TaskListContext";
 import Task from "./Task";
 
 const TaskList = () => {
-  const { tasks } = useContext(TaskListContext);
+  const { tasks,title } = useContext(TaskListContext);
 
   return (
     <div>
       {tasks.length ? (
         <ul className="list">
           {
-          tasks
+          tasks.filter(task => { 
+            console.log({title}.title);
+            console.log(task.title)
+            console.log(task.title.search({title}.title));
+            return task.title.search({title}.title) !== -1;
+          
+          })
           .map(task => {
             return <Task task={task} key={task.id} />;
             
